@@ -1,22 +1,26 @@
-#define _CRTDBG_MAP_ALLOC
-#include<iostream>
-#include <crtdbg.h>
-
-#ifdef _DEBUG
-#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
-#define new DEBUG_NEW
-#endif
-
 #include <iostream>
 #include "FindDuplicate.h"
 
+using namespace std;
+
 int main(int argc, char* argv[])
 {
+	if (argc < 2)
+	{
+		cout << "Usage : excutable.exe <path>" << endl;
+		return 1;
+	}
+
 	FindDuplicate finder;
-	finder.lookThrough("../../programming_test");
+
+	finder.lookThrough(argv[1]);
+	
+	cout << "Level 1 output : " << endl;
 	finder.output();
-	getchar();
+
+	cout << "\n\nLevel 3 output : " << endl;
+	finder.groupoutput();
+
 	finder.~FindDuplicate();
-	_CrtDumpMemoryLeaks();
 	return 0;
 }
